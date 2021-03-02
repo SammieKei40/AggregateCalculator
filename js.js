@@ -11,18 +11,20 @@ document.getElementById('btns').style.visibility = 'hidden';
 
 
 numberForm.addEventListener('submit', (e)=>{
-    document.getElementById('subjdetails').style.visibility = 'visible';
-    document.getElementById('btns').style.visibility = 'visible';
-
+   
     e.preventDefault() //This would prevent the default behavior of form submission
     let numberofCourses = parseInt(document.querySelector('#Subjgrade').value)
-    document.querySelector('.form').querySelector('.form-group').remove()
+   
+   if(numberofCourses == 5){
     for(let i = 0; i<numberofCourses; i++){
+        document.getElementById('subjdetails').style.visibility = 'visible';
+        document.getElementById('btns').style.visibility = 'visible';
+    
         let formGroup = document.createElement('div');
         var grade = document.createElement('input');
         grade.type = 'text';
         grade.className = 'form-control mb-3';
-        grade.placeholder = 'Enter your Waec grade....'
+        grade.placeholder = 'Enter your compulsory Waec grade....'
         grade.id = `grade_${i}`;
         let label = document.createElement('h6');
         label.textContent = `Waec Subject grade ${i+1}`;
@@ -32,6 +34,10 @@ numberForm.addEventListener('submit', (e)=>{
         formGroup.appendChild(grade);
         document.querySelector('.form').appendChild(formGroup);
     }
+   } else {
+       alert("Input only 5 subjects");
+   }
+
 })
 
 
@@ -70,10 +76,7 @@ btn2.addEventListener('click', function(){
           totalJamb_score = Jamb_Score.value / 8;
             totalPU = parseInt(PU_Score.value);
           
-          console.log(totalPU);
-          console.log(totalJamb_score);
-          console.log(total_grade);
-
+     
         Aggre_score =  totalJamb_score + total_grade + totalPU;
     
     function showMessage() {
